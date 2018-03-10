@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExtendVideoCallViewController" customModule="QuickHealthDoctorApp" customModuleProvider="target">
+            <connections>
+                <outlet property="contentLabel" destination="Msb-sO-4e5" id="3yq-Rt-PPK"/>
+                <outlet property="crossButton" destination="jGd-3K-qcH" id="UMn-G0-6Qb"/>
+                <outlet property="freeButton" destination="deR-Gw-5RM" id="G28-LC-SjN"/>
+                <outlet property="headingLabel" destination="R2g-yG-lP9" id="76e-aJ-Kjg"/>
+                <outlet property="paidButton" destination="jRo-8U-u6i" id="2QJ-Q9-c85"/>
+                <outlet property="paidHeightConstraint" destination="BSX-wm-YfU" id="0mZ-Ts-wW5"/>
+                <outlet property="popCotainerView" destination="BLQ-X1-OOg" id="G6o-w8-jeH"/>
+                <outlet property="thanksButton" destination="PCL-12-sQL" id="kCP-XQ-Kqi"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLQ-X1-OOg">
+                    <rect key="frame" x="20" y="177.5" width="335" height="312.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Extend Session" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2g-yG-lP9">
+                            <rect key="frame" x="95.5" y="43" width="144.5" height="27"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="27" id="Zki-DR-zL0"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
+                            <color key="textColor" red="0.1089614704" green="0.50083988899999998" blue="0.50398987529999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your session with the patient will expire in next 5 min, exten now!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Msb-sO-4e5">
+                            <rect key="frame" x="40" y="80" width="255" height="38.5"/>
+                            <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="14"/>
+                            <color key="textColor" red="0.43132731318473816" green="0.4314042329788208" blue="0.43131715059280396" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deR-Gw-5RM">
+                            <rect key="frame" x="25" y="133.5" width="285" height="40"/>
+                            <color key="backgroundColor" red="0.1089614704" green="0.50083988899999998" blue="0.50398987529999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="kXE-Ho-pL1"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
+                            <state key="normal" title="Extend 5 min for free">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onClickedFreeButton:" destination="-1" eventType="touchUpInside" id="ecR-xs-Ssz"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRo-8U-u6i">
+                            <rect key="frame" x="25" y="185.5" width="285" height="40"/>
+                            <color key="backgroundColor" red="0.1089614704" green="0.50083988899999998" blue="0.50398987529999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="BSX-wm-YfU"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
+                            <state key="normal" title="Extend for paid 20 min">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onClickedPaidButton:" destination="-1" eventType="touchUpInside" id="qXJ-95-rtb"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCL-12-sQL">
+                            <rect key="frame" x="25" y="237.5" width="285" height="40"/>
+                            <color key="backgroundColor" red="0.75678724050521851" green="0.7569156289100647" blue="0.75677031278610229" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="4j5-EL-ldp"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
+                            <state key="normal" title="No, Thanks">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="onClickedThanksButton:" destination="-1" eventType="touchUpInside" id="JB7-3q-0zj"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGd-3K-qcH">
+                            <rect key="frame" x="284" y="0.0" width="51" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="51" id="Lkc-yj-hry"/>
+                                <constraint firstAttribute="height" constant="50" id="y1Y-8o-Gy1"/>
+                            </constraints>
+                            <state key="normal" image="delImg"/>
+                            <connections>
+                                <action selector="onClickedCrossButton:" destination="-1" eventType="touchUpInside" id="HAF-zj-atr"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="PCL-12-sQL" secondAttribute="bottom" constant="35" id="1J7-bS-Msk"/>
+                        <constraint firstItem="deR-Gw-5RM" firstAttribute="leading" secondItem="BLQ-X1-OOg" secondAttribute="leading" constant="25" id="6ay-0a-dng"/>
+                        <constraint firstItem="jRo-8U-u6i" firstAttribute="top" secondItem="deR-Gw-5RM" secondAttribute="bottom" constant="12" id="Bt4-bv-LgK"/>
+                        <constraint firstItem="jRo-8U-u6i" firstAttribute="leading" secondItem="BLQ-X1-OOg" secondAttribute="leading" constant="25" id="Ciq-I0-DSc"/>
+                        <constraint firstItem="PCL-12-sQL" firstAttribute="top" secondItem="jRo-8U-u6i" secondAttribute="bottom" constant="12" id="Dno-Bz-CnO"/>
+                        <constraint firstAttribute="trailing" secondItem="Msb-sO-4e5" secondAttribute="trailing" constant="40" id="Esh-9p-2t5"/>
+                        <constraint firstItem="jGd-3K-qcH" firstAttribute="top" secondItem="BLQ-X1-OOg" secondAttribute="top" id="HPf-ac-kYs"/>
+                        <constraint firstAttribute="trailing" secondItem="jRo-8U-u6i" secondAttribute="trailing" constant="25" id="J7D-P8-p05"/>
+                        <constraint firstAttribute="trailing" secondItem="PCL-12-sQL" secondAttribute="trailing" constant="25" id="OOY-y2-L0Z"/>
+                        <constraint firstItem="R2g-yG-lP9" firstAttribute="centerX" secondItem="BLQ-X1-OOg" secondAttribute="centerX" id="QQ2-2v-vje"/>
+                        <constraint firstItem="R2g-yG-lP9" firstAttribute="top" secondItem="BLQ-X1-OOg" secondAttribute="top" constant="43" id="UTB-pk-CHH"/>
+                        <constraint firstItem="Msb-sO-4e5" firstAttribute="leading" secondItem="BLQ-X1-OOg" secondAttribute="leading" constant="40" id="YcI-uN-hiq"/>
+                        <constraint firstItem="deR-Gw-5RM" firstAttribute="top" secondItem="Msb-sO-4e5" secondAttribute="bottom" constant="15" id="bsV-dT-zae"/>
+                        <constraint firstAttribute="trailing" secondItem="jGd-3K-qcH" secondAttribute="trailing" id="jqm-N6-dDX"/>
+                        <constraint firstItem="Msb-sO-4e5" firstAttribute="top" secondItem="R2g-yG-lP9" secondAttribute="bottom" constant="10" id="l6U-HO-XfI"/>
+                        <constraint firstItem="PCL-12-sQL" firstAttribute="leading" secondItem="BLQ-X1-OOg" secondAttribute="leading" constant="25" id="lXt-Sp-Qz1"/>
+                        <constraint firstAttribute="trailing" secondItem="deR-Gw-5RM" secondAttribute="trailing" constant="25" id="rDS-ag-MfK"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.1089614704" green="0.50083988899999998" blue="0.50398987529999995" alpha="0.64568661971830987" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="BLQ-X1-OOg" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="FEN-yk-KcF"/>
+                <constraint firstAttribute="trailing" secondItem="BLQ-X1-OOg" secondAttribute="trailing" constant="20" id="YYg-4j-xkp"/>
+                <constraint firstItem="BLQ-X1-OOg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="vOF-ie-euW"/>
+            </constraints>
+            <point key="canvasLocation" x="25.5" y="52.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="delImg" width="29" height="29"/>
+    </resources>
+</document>

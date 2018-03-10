@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imgCell" id="gTV-IL-0wX" customClass="ZoomCollectionViewCell" customModule="CrowBar" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vm-vO-SsD">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oDT-Ta-bjc">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oDT-Ta-bjc" secondAttribute="trailing" id="1It-3k-fxW"/>
+                            <constraint firstItem="oDT-Ta-bjc" firstAttribute="top" secondItem="4Vm-vO-SsD" secondAttribute="top" id="6qx-Yr-ano"/>
+                            <constraint firstAttribute="bottom" secondItem="oDT-Ta-bjc" secondAttribute="bottom" id="BxA-cF-mpf"/>
+                            <constraint firstItem="oDT-Ta-bjc" firstAttribute="leading" secondItem="4Vm-vO-SsD" secondAttribute="leading" id="SgU-8g-LL5"/>
+                            <constraint firstItem="oDT-Ta-bjc" firstAttribute="centerY" secondItem="4Vm-vO-SsD" secondAttribute="centerY" id="qWg-bN-EWf"/>
+                            <constraint firstItem="oDT-Ta-bjc" firstAttribute="centerX" secondItem="4Vm-vO-SsD" secondAttribute="centerX" id="yLT-pT-HFa"/>
+                        </constraints>
+                    </scrollView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="4Vm-vO-SsD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1pj-p3-IFh"/>
+                <constraint firstAttribute="trailing" secondItem="4Vm-vO-SsD" secondAttribute="trailing" id="BSO-K0-nfs"/>
+                <constraint firstItem="4Vm-vO-SsD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Eso-Pg-Ifo"/>
+                <constraint firstAttribute="bottom" secondItem="4Vm-vO-SsD" secondAttribute="bottom" id="i6V-uo-dMS"/>
+            </constraints>
+        </collectionViewCell>
+    </objects>
+</document>

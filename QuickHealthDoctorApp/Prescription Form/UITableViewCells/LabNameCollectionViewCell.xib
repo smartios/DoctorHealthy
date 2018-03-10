@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular_0.ttf">
+            <string>OpenSans</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="labNameCell" id="gTV-IL-0wX" customClass="LabNameCollectionViewCell" customModule="QuickHealthDoctorApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" tag="61" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MLl-wt-0hj">
+                        <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
+                        <color key="backgroundColor" red="0.94500499963760376" green="0.94516319036483765" blue="0.94498413801193237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="62" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqa-mM-ek4">
+                        <rect key="frame" x="8" y="13" width="233" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="8iD-69-3Vz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" tag="63" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaG-xN-miD">
+                        <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
+                        <connections>
+                            <action selector="onClickedCrossLabName:" destination="gTV-IL-0wX" eventType="touchUpInside" id="n10-b6-MAP"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="xaG-xN-miD" secondAttribute="trailing" id="4xd-AR-JVb"/>
+                <constraint firstItem="MLl-wt-0hj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5pJ-m9-JuN"/>
+                <constraint firstAttribute="trailing" secondItem="dqa-mM-ek4" secondAttribute="trailing" constant="8" id="IOj-U6-9Jy"/>
+                <constraint firstItem="xaG-xN-miD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Rfz-eS-dWK"/>
+                <constraint firstAttribute="bottom" secondItem="MLl-wt-0hj" secondAttribute="bottom" id="Sam-P8-wXO"/>
+                <constraint firstItem="dqa-mM-ek4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="c7n-pt-nSX"/>
+                <constraint firstItem="dqa-mM-ek4" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="mh9-xR-14T"/>
+                <constraint firstAttribute="bottom" secondItem="xaG-xN-miD" secondAttribute="bottom" id="psG-uV-swb"/>
+                <constraint firstItem="MLl-wt-0hj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uiv-S9-eut"/>
+                <constraint firstItem="xaG-xN-miD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ySa-eO-j3D"/>
+                <constraint firstAttribute="trailing" secondItem="MLl-wt-0hj" secondAttribute="trailing" id="za3-RH-l7G"/>
+            </constraints>
+            <size key="customSize" width="249" height="50"/>
+            <connections>
+                <outlet property="bgImageView" destination="MLl-wt-0hj" id="HnI-iB-LLI"/>
+            </connections>
+            <point key="canvasLocation" x="-71.5" y="-23"/>
+        </collectionViewCell>
+    </objects>
+</document>

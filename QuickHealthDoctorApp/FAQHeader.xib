@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold_0.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="redraw" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="postlogin" translatesAutoresizingMaskIntoConstraints="NO" id="iWz-r4-q25">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                </imageView>
+                <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" tag="12" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ppk-s9-j9O">
+                    <rect key="frame" x="147" y="111" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="0Ax-im-Xca"/>
+                        <constraint firstAttribute="height" constant="80" id="ar8-vD-j87"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JACOB FRANCIS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STj-38-gcv">
+                    <rect key="frame" x="30" y="202" width="315" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="xdE-pz-5oL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
+                    <color key="textColor" white="0.0" alpha="0.90635775860000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view tag="-13" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5d-qq-i7G" customClass="FloatRatingView" customModule="QuickHealthDoctorApp" customModuleProvider="target">
+                    <rect key="frame" x="136" y="230" width="104" height="20"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="m3V-Or-SZS"/>
+                        <constraint firstAttribute="width" constant="104" id="nwP-sL-Dr5"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="iWz-r4-q25" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9K5-ap-5n6"/>
+                <constraint firstAttribute="bottom" secondItem="H5d-qq-i7G" secondAttribute="bottom" id="BgT-24-0Km"/>
+                <constraint firstAttribute="trailing" secondItem="STj-38-gcv" secondAttribute="trailing" constant="30" id="D8E-Xj-cHo"/>
+                <constraint firstItem="ppk-s9-j9O" firstAttribute="bottom" secondItem="iWz-r4-q25" secondAttribute="bottom" constant="41.5" id="E4A-EE-iJv"/>
+                <constraint firstAttribute="trailing" secondItem="iWz-r4-q25" secondAttribute="trailing" id="TbB-rp-GF0"/>
+                <constraint firstItem="ppk-s9-j9O" firstAttribute="centerX" secondItem="iWz-r4-q25" secondAttribute="centerX" id="Zfm-Ba-xhN"/>
+                <constraint firstItem="iWz-r4-q25" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.6" id="a7s-JB-55d"/>
+                <constraint firstItem="H5d-qq-i7G" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bY6-J9-35v"/>
+                <constraint firstItem="ppk-s9-j9O" firstAttribute="centerX" secondItem="STj-38-gcv" secondAttribute="centerX" id="gMl-Fr-sIo"/>
+                <constraint firstItem="STj-38-gcv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="oj7-8s-bKx"/>
+                <constraint firstItem="iWz-r4-q25" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sxG-mF-9R5"/>
+                <constraint firstItem="STj-38-gcv" firstAttribute="top" secondItem="ppk-s9-j9O" secondAttribute="bottom" constant="11" id="w5j-jQ-Uzn"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-10.5" y="3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="postlogin" width="413" height="169"/>
+    </resources>
+</document>

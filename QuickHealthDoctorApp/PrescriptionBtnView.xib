@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PrescriptionBtnView" customModule="QuickHealthDoctorApp" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="JBa-Xk-HBb" id="ycs-b1-1Ak"/>
+                <outlet property="prescriptionBtn" destination="mva-Lt-qLi" id="XoT-Uw-Izg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="redraw" insetsLayoutMarginsFromSafeArea="NO" id="JBa-Xk-HBb">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="182"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDe-wI-Mut">
+                    <rect key="frame" x="28" y="0.0" width="319" height="182"/>
+                    <subviews>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mva-Lt-qLi">
+                            <rect key="frame" x="124" y="96" width="71" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" id="Q6L-mC-gZ3"/>
+                                <constraint firstAttribute="width" constant="71" id="hCn-3Y-mBg"/>
+                            </constraints>
+                            <state key="normal" image="prescription"/>
+                            <connections>
+                                <action selector="prescriptionBtnClicked:" destination="-1" eventType="touchUpInside" id="vs5-vU-1FJ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="mva-Lt-qLi" secondAttribute="bottom" constant="16" id="3mz-Eh-evz"/>
+                        <constraint firstItem="mva-Lt-qLi" firstAttribute="centerX" secondItem="gDe-wI-Mut" secondAttribute="centerX" id="vpx-Am-cZj"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="gDe-wI-Mut" firstAttribute="centerX" secondItem="JBa-Xk-HBb" secondAttribute="centerX" id="0zJ-es-i7D"/>
+                <constraint firstItem="gDe-wI-Mut" firstAttribute="width" secondItem="JBa-Xk-HBb" secondAttribute="width" multiplier="0.85" id="XeJ-Vz-Q8b"/>
+                <constraint firstItem="gDe-wI-Mut" firstAttribute="top" secondItem="JBa-Xk-HBb" secondAttribute="top" id="dVa-l5-TPq"/>
+                <constraint firstAttribute="bottom" secondItem="gDe-wI-Mut" secondAttribute="bottom" id="qou-vW-bUN"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="0d4-KU-OyV"/>
+            <point key="canvasLocation" x="35.5" y="147"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="prescription" width="60" height="61"/>
+    </resources>
+</document>
