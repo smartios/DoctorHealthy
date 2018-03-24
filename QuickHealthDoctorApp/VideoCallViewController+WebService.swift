@@ -20,8 +20,7 @@ extension VideoCallViewController{
         }else if self.prescriptionData.prescription.trimmingCharacters(in: .whitespaces) == ""{
             supportingfuction.showMessageHudWithMessage(message: "Please enter the diagnosis detail.", delay: 2.0)
             return
-        }
-            else{
+        }else{
             supportingfuction.showProgressHudForViewMy(view: self, withDetailsLabel: "Please Wait", labelText: "Submitting...")
             let dict = NSMutableDictionary()
             

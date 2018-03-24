@@ -9,7 +9,7 @@
 import UIKit
 
 class InboxView: BaseViewController,UITableViewDataSource,UITableViewDelegate{
-    
+    @IBOutlet var noRecordLbl: UILabel!
     var userInterface = UIDevice.current.userInterfaceIdiom
     @IBOutlet weak var tableView: UITableView?
     var inboxDic = NSMutableDictionary()
@@ -20,10 +20,12 @@ class InboxView: BaseViewController,UITableViewDataSource,UITableViewDelegate{
         super.viewDidLoad()
         tableView?.estimatedRowHeight = 100
         tableView?.rowHeight = UITableViewAutomaticDimension
+        
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
         definesPresentationContext = true
-        
+        noRecordLbl.text = "No record(s) found."
+        noRecordLbl.isHidden = true
         // Prevent the navigation bar from being hidden when searching.
         //////////for current location////////////////
         
@@ -35,6 +37,8 @@ class InboxView: BaseViewController,UITableViewDataSource,UITableViewDelegate{
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarView?.backgroundColor = .white
         self.inboxListing()
     }
     
@@ -153,7 +157,15 @@ class InboxView: BaseViewController,UITableViewDataSource,UITableViewDelegate{
                     }else if let x = (dataFromServer).object(forKey: "inbox_count") as? String{
                         self.totalCount = Int(x)!
                     }
+                    
+                    if self.inboxList.count > 0{
+                        self.noRecordLbl.isHidden = true
+                    }else{
+                        self.noRecordLbl.isHidden = false
+                    }
+                    
                     self.tableView?.reloadData()
+                    
                 }else{
                     if dataFromServer.object(forKey: "message") != nil{
                         supportingfuction.showMessageHudWithMessage(message: dataFromServer.object(forKey: "message") as! NSString, delay: 2.0)

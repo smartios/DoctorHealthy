@@ -24,27 +24,18 @@ struct WebAPI {
     
     
     //Development URL's
-//    static let BASE_URL = "http://115.249.91.204/quickhealth/webservice/"
-//   static let BASE_URL = "https://quickhealth4u.com/develop/webservice/"
-    
-    //
-    //
-//    static let BASE_URLs = "http://115.249.91.204/quickhealth/"
+//    static let BASE_URL = "https://quickhealth4u.com/develop/webservice/"
 //    static let BASE_URLs = "https://quickhealth4u.com/develop/"
-    
-  
+
     // Staging Server
     
+//    static let BASE_URL = "https://quickhealth4u.com/webservice/"
+//    static let BASE_URLs = "https://quickhealth4u.com/"
     
-    // static let BASE_URL = "http://103.15.232.35/singsys-stg3/quickhealth/webservice/"
-    static let BASE_URL = "https://quickhealth4u.com/webservice/"
-//    static let BASE_URL = "http://192.168.45.67/ci/quickhealth/webservice/"
-    
-    ////
-    
-    //static let BASE_URLs = "http://103.15.232.35/singsys-stg3/quickhealth/"
-     static let BASE_URLs = "https://quickhealth4u.com/"
-//    static let BASE_URLs = "http://192.168.45.67/ci/quickhealth/"
+//Local host IP
+//
+    static let BASE_URLs = "http://192.168.5.76/quickhealth/"
+    static let BASE_URL = "http://192.168.5.76/quickhealth/webservice/"
     
     let NoInternetConnection = "Please check your internet connection."
     
@@ -149,6 +140,7 @@ struct WebAPI {
     static let history = "history_list"
     static let Extend_Call = "extended_call"
     static let End_call = "end-call"
+    static let Prescription = "prescription"
 }
 
 
@@ -253,8 +245,7 @@ class CommonValidations: NSObject{
     
     //MARK: Validate Email
     
-    class func isValidEmail(testStr:String) -> Bool
-    {
+    class func isValidEmail(testStr:String) -> Bool{
         // println("validate calendar: \(testStr)")
         let emailRegEx = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
         
@@ -344,6 +335,25 @@ class CommonValidations: NSObject{
             }
         }
         return NSDictionary()
+    }
+    
+    class func hexStringToUIColor (hex:String) -> UIColor{
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        if ((cString.characters.count) != 6) {
+            return UIColor.gray
+        }
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
     }
 }
 class StoredUserData{

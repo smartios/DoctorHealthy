@@ -16,7 +16,7 @@ class MyProfileViewController: UIViewController,UITableViewDelegate,UITableViewD
     var user_id = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+       UIApplication.shared.statusBarView?.backgroundColor = .clear
         
         // Do any additional setup after loading the view.
     }
@@ -62,7 +62,7 @@ class MyProfileViewController: UIViewController,UITableViewDelegate,UITableViewD
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 220
+        return 250
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -262,7 +262,7 @@ class MyProfileViewController: UIViewController,UITableViewDelegate,UITableViewD
                 }
                 
                 
-                if let x = ((chilListArray.object(at: indexPath.row - 2) as! NSDictionary).object(forKey: "id_child") as? String)
+                if let x = ((chilListArray.object(at: indexPath.row - 2) as! NSDictionary).object(forKey: "unique_number") as? String)
                 {
                     idLbl.text = x
                 }else
@@ -284,7 +284,7 @@ class MyProfileViewController: UIViewController,UITableViewDelegate,UITableViewD
         let dict = NSMutableDictionary()
         
         dict.setObject(user_id, forKey: "user_id" as NSCopying)
-       dict.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
+//       dict.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
         let apiSniper = APISniper()
         
         

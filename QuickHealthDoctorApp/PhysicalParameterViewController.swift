@@ -1947,7 +1947,7 @@ class PhysicalParameterViewController: BaseViewController,UITableViewDelegate,UI
         requestData.setObject(curr_ex, forKey: "smoked_3" as NSCopying)
         requestData.setObject(stopped_time, forKey: "smoked_4" as NSCopying)
         requestData.setObject(no_of_drink, forKey: "no_of_drinks" as NSCopying)
-        requestData.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
+//        requestData.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
         let apiSniper = APISniper()
         apiSniper.getDataFromWebAPI(WebAPI.physical_stats_edit,requestData, {(operation, responseObject) in
             if let dataFromServer = responseObject as? NSDictionary

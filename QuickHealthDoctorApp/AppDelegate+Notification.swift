@@ -15,6 +15,7 @@ enum NotificationType:String {
     case Call_Rejected = "call_rejected"
     case Call_Accepted = "call_accepted"
     case Call_Reminder = "call_reminder"
+    case Extend_Payment = "extend_payment_notification"
 }
 
 extension AppDelegate{
@@ -48,12 +49,11 @@ extension AppDelegate{
     
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let tokenParts = deviceToken.map { data -> String in
-            return String(format: "%02.2hhx", data)
-        }
-        let token = tokenParts.joined()
-        print("Device Token: \(token)")
-        UserDefaults.standard.set("\(token)", forKey: "device_token")
+
+        let deviceToken = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+
+        print("Device Token: \(deviceToken)")
+        UserDefaults.standard.set("\(deviceToken)", forKey: "device_token")
     }
     
     func application(_ application: UIApplication,
@@ -73,7 +73,7 @@ extension AppDelegate{
     
     //Handle Notifiaction
     func handleNotifiaction(notificationData:NSDictionary){
-        
+        print("notificationData=====\(notificationData)")
         if notificationData.object(forKey: "notification_type") as! String == NotificationType.Appointment_Booking.rawValue{
             AppointmentNotification.newAppointmentBooking(notificationData)
         }else if notificationData.object(forKey: "notification_type") as! String == NotificationType.Nurse_Alloted.rawValue{
@@ -88,8 +88,9 @@ extension AppDelegate{
             CallNotification.callAcceptReject(tempDict)
         }else if notificationData.object(forKey: "notification_type") as! String == NotificationType.Call_Reminder.rawValue{
             CallNotification.callReminder(notificationData)
+        }else if notificationData.object(forKey: "notification_type") as! String == NotificationType.Extend_Payment.rawValue{
+            CallNotification.callExtendPaymetReceived(notificationData)
         }
-        
     }
 }
 

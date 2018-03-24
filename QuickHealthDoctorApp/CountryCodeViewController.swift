@@ -48,6 +48,9 @@ class CountryCodeViewController: UIViewController,UITableViewDelegate,UITableVie
             listDropDown()
         }
         
+        if from == "dosage" || from == "duration"{
+            self.headingLabel?.text = "GET DURATION"
+        }
        
       
  

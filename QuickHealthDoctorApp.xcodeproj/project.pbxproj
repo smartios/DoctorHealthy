@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80FA3181206530F9003B87E3 /* PrescribedDrugTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FA3180206530F9003B87E3 /* PrescribedDrugTableViewCell.xib */; };
 		9FF1C45CE1263418B6241107 /* Pods_QuickHealthDoctorApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFBDCCC8392F483B9BEAD15 /* Pods_QuickHealthDoctorApp.framework */; };
 		AD0606EF20185FE6000FF4BF /* FamilyHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0606EE20185FE5000FF4BF /* FamilyHistoryController.swift */; };
 		AD0606F5201880C7000FF4BF /* NurseTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0606F2201880BC000FF4BF /* NurseTrackViewController.swift */; };
@@ -104,7 +105,6 @@
 		F60254C6204440B300BC10B3 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60254B4204440B100BC10B3 /* HeaderTableViewCell.swift */; };
 		F60254C7204440B300BC10B3 /* HeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F60254B5204440B100BC10B3 /* HeaderTableViewCell.xib */; };
 		F60254C8204440B300BC10B3 /* PrescribedDrugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60254B6204440B100BC10B3 /* PrescribedDrugTableViewCell.swift */; };
-		F60254C9204440B300BC10B3 /* PrescribedDrugTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F60254B7204440B100BC10B3 /* PrescribedDrugTableViewCell.xib */; };
 		F60254CA204440B300BC10B3 /* PrescribedLabTestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60254B8204440B100BC10B3 /* PrescribedLabTestTableViewCell.swift */; };
 		F60254CB204440B300BC10B3 /* PrescribedLabTestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F60254B9204440B100BC10B3 /* PrescribedLabTestTableViewCell.xib */; };
 		F60254CC204440B300BC10B3 /* PrescribedTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60254BA204440B100BC10B3 /* PrescribedTableHeader.swift */; };
@@ -208,6 +208,7 @@
 		2CEF7DCCACD3AF3EEAF34D9A /* Pods-QuickHealthDoctorApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickHealthDoctorApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QuickHealthDoctorApp/Pods-QuickHealthDoctorApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5DD7A54F6853710164C07AF3 /* Pods-QuickHealthDoctorApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuickHealthDoctorApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-QuickHealthDoctorApp/Pods-QuickHealthDoctorApp.release.xcconfig"; sourceTree = "<group>"; };
 		7EFBDCCC8392F483B9BEAD15 /* Pods_QuickHealthDoctorApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuickHealthDoctorApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80FA3180206530F9003B87E3 /* PrescribedDrugTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrescribedDrugTableViewCell.xib; sourceTree = "<group>"; };
 		AD0606EE20185FE5000FF4BF /* FamilyHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyHistoryController.swift; sourceTree = "<group>"; };
 		AD0606F2201880BC000FF4BF /* NurseTrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NurseTrackViewController.swift; sourceTree = "<group>"; };
 		AD0606F3201880BF000FF4BF /* TrackNurseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackNurseView.xib; sourceTree = "<group>"; };
@@ -352,7 +353,6 @@
 		F60254B4204440B100BC10B3 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F60254B5204440B100BC10B3 /* HeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderTableViewCell.xib; sourceTree = "<group>"; };
 		F60254B6204440B100BC10B3 /* PrescribedDrugTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescribedDrugTableViewCell.swift; sourceTree = "<group>"; };
-		F60254B7204440B100BC10B3 /* PrescribedDrugTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrescribedDrugTableViewCell.xib; sourceTree = "<group>"; };
 		F60254B8204440B100BC10B3 /* PrescribedLabTestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescribedLabTestTableViewCell.swift; sourceTree = "<group>"; };
 		F60254B9204440B100BC10B3 /* PrescribedLabTestTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrescribedLabTestTableViewCell.xib; sourceTree = "<group>"; };
 		F60254BA204440B100BC10B3 /* PrescribedTableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrescribedTableHeader.swift; sourceTree = "<group>"; };
@@ -584,6 +584,7 @@
 				F280CA941FB4695200A520E5 /* UIImage+PECrop.m */,
 			);
 			name = CropingImage;
+			path = QuickHealthDoctorApp;
 			sourceTree = "<group>";
 		};
 		F2A5A0331F70CD270028CC25 /* Font */ = {
@@ -652,8 +653,6 @@
 				F6046E3D202976FE00CB327E /* Medical History */,
 				F6046E412029A6F800CB327E /* Appointment */,
 				AD0606F120188045000FF4BF /* Nurse Tracking */,
-				ADC708482011ACDB008C7CD3 /* FSCalendar */,
-				F280CA8C1FB4693700A520E5 /* CropingImage */,
 				F2F836971FA9DE6800D9E6B5 /* QuickHealthDoctorApp.entitlements */,
 				F2F967051FB9B8A3009A35EF /* BaseViewController.swift */,
 				F2F967071FB9B8F6009A35EF /* MenuViewController.swift */,
@@ -701,6 +700,8 @@
 		F2CF430A1F6F8D66003EC0D8 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				ADC708482011ACDB008C7CD3 /* FSCalendar */,
+				F280CA8C1FB4693700A520E5 /* CropingImage */,
 				F2E1A155200340AC00F32479 /* UIDevice.swift */,
 				F278E29A1FC7DCF70023BB1D /* FloatRatingView.swift */,
 				F2CF430C1F6F8D88003EC0D8 /* Reachability.h */,
@@ -737,7 +738,7 @@
 				F60254B4204440B100BC10B3 /* HeaderTableViewCell.swift */,
 				F60254B5204440B100BC10B3 /* HeaderTableViewCell.xib */,
 				F60254B6204440B100BC10B3 /* PrescribedDrugTableViewCell.swift */,
-				F60254B7204440B100BC10B3 /* PrescribedDrugTableViewCell.xib */,
+				80FA3180206530F9003B87E3 /* PrescribedDrugTableViewCell.xib */,
 				F60254B8204440B100BC10B3 /* PrescribedLabTestTableViewCell.swift */,
 				F60254B9204440B100BC10B3 /* PrescribedLabTestTableViewCell.xib */,
 				F60254BA204440B100BC10B3 /* PrescribedTableHeader.swift */,
@@ -1036,11 +1037,11 @@
 				F280CA871FB2CF1300A520E5 /* TabbarStoryboard.storyboard in Resources */,
 				F6E2D428202C267B001EB568 /* OpenSans-Bold_0.ttf in Resources */,
 				F6E2D432202C26C4001EB568 /* OpenSans-Semibold.ttf in Resources */,
+				80FA3181206530F9003B87E3 /* PrescribedDrugTableViewCell.xib in Resources */,
 				F665103F202B3479000E32DD /* FilePreviewViewController.xib in Resources */,
 				F6E2D42D202C26AB001EB568 /* OpenSans-Italic.ttf in Resources */,
 				F6E2D42F202C26B1001EB568 /* OpenSans-LightItalic.ttf in Resources */,
 				F2CF43031F6F716D003EC0D8 /* LaunchScreen.storyboard in Resources */,
-				F60254C9204440B300BC10B3 /* PrescribedDrugTableViewCell.xib in Resources */,
 				F626FFD0203D9672008C93F7 /* TestListingTableViewCell.xib in Resources */,
 				F6046E432029A73600CB327E /* AppointmentListHeader.xib in Resources */,
 				F6E2D42E202C26AE001EB568 /* OpenSans-Light.ttf in Resources */,

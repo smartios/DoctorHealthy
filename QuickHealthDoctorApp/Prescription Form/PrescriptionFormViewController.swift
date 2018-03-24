@@ -17,6 +17,7 @@ enum Actions {
     case D_AddMore
     case Lab_Name
     case Lab_Remove
+    case D_Days
 }
 protocol DrugPrescriptionActionDelegate {
     func getActionForPrescription(_ action: Actions, indexPath: IndexPath)
@@ -192,6 +193,10 @@ class PrescriptionFormViewController: UIViewController, UITableViewDataSource, U
         
         drugTimeHeading.text = "BEST TIME"
         
+        let drugDaysHeading = cell.viewWithTag(45) as! UILabel
+        let drugDaysContent = cell.viewWithTag(46) as! UILabel
+        drugDaysHeading.text = "NO. OF DAYS"
+        
         let drugRemarkHeading = cell.viewWithTag(39) as! UILabel
         let drugRemarkTextView = cell.viewWithTag(40) as! UITextView
         drugRemarkTextView.delegate = self
@@ -209,6 +214,8 @@ class PrescriptionFormViewController: UIViewController, UITableViewDataSource, U
             drugDosageContent.text = (dict.dosage != "") ?  dict.dosage : "N/A"
             
             drugTimeContent.text = (dict.best_time != "") ?  dict.best_time : "N/A"
+            
+            drugDaysContent.text = (dict.days != "") ?  dict.days : "N/A"
             
             drugRemarkTextView.text = (dict.remarks != "") ?  dict.remarks : placeholder
         }
@@ -250,7 +257,7 @@ class PrescriptionFormViewController: UIViewController, UITableViewDataSource, U
         return self.prescriptionData.lab_test_array.count
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width/2 - 5, height: 50)
+        return CGSize(width: collectionView.frame.size.width/2 - 5, height: 35)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "labNameCell", for: indexPath) as! LabNameCollectionViewCell
@@ -338,6 +345,13 @@ class PrescriptionFormViewController: UIViewController, UITableViewDataSource, U
             self.navigationController?.pushViewController(prescriptionVC, animated: true)
 
             break
+        case .D_Days:
+            let prescriptionVC = ListingViewController()
+            prescriptionVC.list_type = "no_days"
+            prescriptionVC.delegate = self
+            self.navigationController?.pushViewController(prescriptionVC, animated: true)
+            
+            break
         case .D_AddMore:
             if indexPath.row != self.prescriptionData.drug_array.count - 1{
                 self.prescriptionData.drug_array.remove(at: indexPath.row)
@@ -398,7 +412,8 @@ extension PrescriptionFormViewController:ListingViewDatasource{
     }
     
     func getDosagesData(data: NSDictionary) {
-        self.prescriptionData.drug_array.last?.dosage = data.object(forKey: "title") as! String
+        self.prescriptionData.drug_array.last?.dosage_value = "\(data.object(forKey: "value")!)"
+        self.prescriptionData.drug_array.last?.dosage = "\(data.object(forKey: "title")!)"
         self.prescriptionFormTableView.reloadData()
     }
     
@@ -407,9 +422,15 @@ extension PrescriptionFormViewController:ListingViewDatasource{
         self.prescriptionFormTableView.reloadData()
     }
     
+    func getDaysData(data: String) {
+        self.prescriptionData.drug_array.last?.days = data
+        self.prescriptionFormTableView.reloadData()
+    }
+    
     func getDrugData(data: NSDictionary) {
         self.prescriptionData.drug_array.last?.drug_name = data.object(forKey: "drug_name") as! String
         self.prescriptionData.drug_array.last?.type = data.object(forKey: "drug_category") as! String
+        self.prescriptionData.drug_array.last?.drug_list_id = data.object(forKey: "drug_list_id") as! String
         self.prescriptionFormTableView.reloadData()
     }
     

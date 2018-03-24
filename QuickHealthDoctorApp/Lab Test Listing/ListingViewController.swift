@@ -12,8 +12,10 @@ protocol ListingViewDatasource{
     func getLabTestData(data:NSArray)
     func getDosagesData(data:NSDictionary)
     func getQwantityData(data:String)
+    func getDaysData(data:String)
     func getDrugData(data:NSDictionary)
     func getDrugBestTimeData(data:NSDictionary)
+    
 }
 
 
@@ -36,7 +38,7 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setHeaderTitle()
-        if self.list_type != "quantity" {
+        if self.list_type != "quantity" && self.list_type != "no_days" {
             self.labTestListing()
         }
         // Do any additional setup after loading the view.
@@ -56,6 +58,8 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
             headerTitle.text = "BEST TIME"
         }else if self.list_type == "quantity" {
             headerTitle.text = "DRUG QUANTITY"
+        }else if self.list_type == "no_days" {
+            headerTitle.text = "DAYS"
         }else  {
             headerTitle.text = "DOSAGES"
         }
@@ -75,6 +79,8 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
             self.delegate?.getDrugBestTimeData(data: self.selectedData.object(at: 0) as! NSDictionary)
         }else if self.list_type == "quantity" {
             self.delegate?.getQwantityData(data: self.selectedData.object(at: 0) as! String)
+        }else if self.list_type == "no_days" {
+            self.delegate?.getDaysData(data: self.selectedData.object(at: 0) as! String)
         }else  {
             self.delegate?.getDosagesData(data: self.selectedData.object(at: 0) as! NSDictionary)
         }
@@ -88,7 +94,7 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.list_type == "quantity" {
+        if self.list_type == "quantity" || self.list_type == "no_days" {
             return 20
         }else{
            return self.dataArray.count
@@ -102,7 +108,7 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
             return self.getDruglistTableViewCell(tableView: tableView, indexPath: indexPath)
         }else if self.list_type == "best_time" {
             return self.getBestTimelistTableViewCell(tableView: tableView, indexPath: indexPath)
-        }else if self.list_type == "quantity" {
+        }else if self.list_type == "quantity" || self.list_type == "no_days"{
             return self.getQuantitylistTableViewCell(tableView: tableView, indexPath: indexPath)
         }else  {
             return self.getDosagelistTableViewCell(tableView: tableView, indexPath: indexPath)
@@ -198,7 +204,7 @@ class ListingViewController: UIViewController, UITableViewDataSource, UITableVie
         }else if self.list_type == "best_time" {
             self.selectedData.removeAllObjects()
             self.selectedData.add(self.dataArray.object(at: indexPath.row))
-        }else if self.list_type == "quantity" {
+        }else if self.list_type == "quantity" || self.list_type == "no_days"{
             self.selectedData.removeAllObjects()
             self.selectedData.add("\(indexPath.row + 1)")
         }else  {

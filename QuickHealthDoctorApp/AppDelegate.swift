@@ -46,6 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         GMSServices.provideAPIKey("AIzaSyBBVXutvuWZ9s2Y42Q__PnWvx5JPmxdWzw")
         GMSPlacesClient.provideAPIKey("AIzaSyBBVXutvuWZ9s2Y42Q__PnWvx5JPmxdWzw")
         
+        
+       
+        
         if UserDefaults.standard.object(forKey: "access_token") == nil{
             UserDefaults.standard.set("", forKey: "access_token")
         }
@@ -166,6 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         SocketIOManager.sharedInstance.isApplicationInBackground = true
+        SocketIOManager.sharedInstance.closeConnection()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -176,7 +180,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         SocketIOManager.sharedInstance.isApplicationInBackground = false
         if UserDefaults.standard.object(forKey: "user_detail") != nil && UserDefaults.standard.object(forKey: "user_detail") is NSDictionary{
-            SocketIOManager.sharedInstance.establishConnection()
+            if ((UserDefaults.standard.object(forKey: "user_detail") as! NSDictionary).object(forKey: "user_type") as! String).lowercased() == "doctor"{
+                SocketIOManager.sharedInstance.establishConnection()
+            }
         }
     }
     
@@ -314,4 +320,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
     
 
 }
+
+extension UIApplication {
+    var statusBarView: UIView? {
+        return value(forKey: "statusBar") as? UIView
+    }
+}
+
+
 

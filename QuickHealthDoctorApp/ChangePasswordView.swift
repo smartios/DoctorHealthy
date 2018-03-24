@@ -21,6 +21,7 @@ class ChangePasswordView: UIViewController,UITableViewDataSource,UITableViewDele
         super.viewDidLoad()
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
+        UIApplication.shared.statusBarView?.backgroundColor = .white
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
         definesPresentationContext = true

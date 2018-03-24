@@ -13,7 +13,7 @@ class HistoryView: UIViewController,UITableViewDataSource,UITableViewDelegate{
     var userInterface = UIDevice.current.userInterfaceIdiom
     @IBOutlet weak var tableView: UITableView?
     var profileDictionary = NSMutableDictionary()
-    var callStatus = ["ACCEPTED","REJECTED","ACCEPTED","ACCEPTED","REJECTED","ACCEPTED","REJECTED","ACCEPTED","REJECTED","REJECTED"]
+
     var historyList:[NSDictionary] = []
     var page = 0
     
@@ -21,6 +21,7 @@ class HistoryView: UIViewController,UITableViewDataSource,UITableViewDelegate{
         super.viewDidLoad()
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
+        UIApplication.shared.statusBarView?.backgroundColor = .white
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
         definesPresentationContext = true
@@ -84,17 +85,16 @@ class HistoryView: UIViewController,UITableViewDataSource,UITableViewDelegate{
             patientId.text = "N/A"
         }
         
-        if let call_start = self.historyList[indexPath.row].object(forKey: "call_start") as? String,call_start != "0000-00-00 00:00:00"{
-            call_Date.text = AppDateFormat.getDateStringFromDateString(date: call_start, fromDateString: "YYYY-MM-dd HH:mm:ss", toDateString: "dd MMM,YYYY")
-            call_Time.text = AppDateFormat.getDateStringFromDateString(date: call_start, fromDateString: "YYYY-MM-dd HH:mm:ss", toDateString: "hh:mm a")
+        if let call_start = self.historyList[indexPath.row].object(forKey: "call_updated_on") as? String,call_start != "0000-00-00 00:00:00" , call_start != ""{
+            call_Date.text = AppDateFormat.getDateStringFromDateString2(date: call_start, fromDateString: "YYYY-MM-dd HH:mm:ss", toDateString: "dd MMM, YYYY")
+            call_Time.text = AppDateFormat.getDateStringFromDateString2(date: call_start, fromDateString: "YYYY-MM-dd HH:mm:ss", toDateString: "hh:mm a")
         }else{
             call_Date.text = "N/A"
             call_Time.text = "N/A"
         }
         
-        if let status = self.historyList[indexPath.row].object(forKey: "call_status") as? String,status != ""{
+        if let status = self.historyList[indexPath.row].object(forKey: "appointment_status") as? String,status != ""{
             call_Status.text = status.uppercased()
-            
         }else{
             call_Status.text = "N/A"
         }
@@ -123,7 +123,11 @@ class HistoryView: UIViewController,UITableViewDataSource,UITableViewDelegate{
     }
     
     @IBAction func detailPatientBtnTapped(_ sender: UIButton) {
-     
+        let hitPoint: CGPoint = sender.convert(sender.bounds.origin, to: self.tableView)
+        let indexPath = self.tableView?.indexPathForRow(at: hitPoint)!
+        let vc = PrescribedFormViewController()
+        vc.id_appointment = self.historyList[(indexPath?.row)!].object(forKey: "id_appointment") as! String
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func backBtnClicked(_ sender: UIButton) {
@@ -131,18 +135,22 @@ class HistoryView: UIViewController,UITableViewDataSource,UITableViewDelegate{
     }
     
     func setCallStaus(status:String,label:UILabel){
+
         switch status.lowercased() {
         case "accepted":
-            label.textColor = UIColor.green
+            label.textColor = CommonValidations.hexStringToUIColor(hex: "008000")
             break
         case "rejected":
-            label.textColor = UIColor.red
+            label.textColor = CommonValidations.hexStringToUIColor(hex: "ff0000")
             break
         case "cancelled":
             label.textColor = UIColor.black
             break
-        case "complete":
-            label.textColor = UIColor.blue
+        case "completed":
+            label.textColor = CommonValidations.hexStringToUIColor(hex: "35e45e")
+            break
+        case "pending":
+            label.textColor = CommonValidations.hexStringToUIColor(hex: "ffcc34")
             break
         case "n/a":
             label.textColor = UIColor.darkGray
@@ -160,8 +168,8 @@ class HistoryView: UIViewController,UITableViewDataSource,UITableViewDelegate{
         }
         let dict = NSMutableDictionary()
         
-        dict.setObject(UserDefaults.standard.object(forKey: "user_id") as! String, forKey: "user_id" as NSCopying)
-        dict.setObject(((UserDefaults.standard.object(forKey: "user_detail") as! NSDictionary).object(forKey: "user_type") as! String).lowercased(), forKey: "account_type" as NSCopying)
+        dict.setObject(UserDefaults.standard.object(forKey: "user_id") as! String, forKey: "id_user" as NSCopying)
+        dict.setObject(((UserDefaults.standard.object(forKey: "user_detail") as! NSDictionary).object(forKey: "user_type") as! String).lowercased(), forKey: "user_type" as NSCopying)
         dict.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
         let apiSniper = APISniper()
         

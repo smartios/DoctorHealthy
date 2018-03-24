@@ -10,6 +10,20 @@ import UIKit
 import OpenTok
 import AVFoundation
 
+enum TokboxSignal:String {
+    case ExtendedPaymentCancelled = "ExtendedPaymentCancelled"
+    case End_Call = "endCall"
+    case Stream_Stopped = "streamStopped"
+    case Stream_Reconnected = "streamReconnected"
+    case Audio_Muted = "ismuted_true"
+    case Audio_Unmuted = "ismuted_false"
+    case Paid_Call_Extended = "paidCallExtended"
+    case Paid_Call_Not_Extended = "paidCallNotExtended"
+    case Extended_Paid_Call = "extendPaidCall"
+    case Message = "message"
+}
+//
+
 class VideoCallViewController: UIViewController,PulsingCallDelegate {
     
     var session: OTSession! //epresents an OpenTok session and includes methods for interacting with the session.
@@ -57,7 +71,8 @@ class VideoCallViewController: UIViewController,PulsingCallDelegate {
             }
         }else{
             //Get Tokbox API token and session id
-            self.getTokboxApiSessionID()
+            self.perform(#selector(self.getTokboxApiSessionID), with: nil, afterDelay: 3.0)
+//            self.getTokboxApiSessionID()
         }
         
         //set patient detial on view
@@ -79,6 +94,7 @@ class VideoCallViewController: UIViewController,PulsingCallDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.statusBarView?.backgroundColor = .clear
         UIApplication.shared.isIdleTimerDisabled = true
         if self.timeRemaining == 0{
             self.disablebuttonOnViewExceptPrescription()
@@ -115,13 +131,13 @@ class VideoCallViewController: UIViewController,PulsingCallDelegate {
                 if let tempDict = (data as! NSArray)[0] as? NSDictionary{
                     self.setTokboxSessionIdAndToken(data: tempDict)
                 }
-                
             })
         }else{
             //Connect to the tocbox server
             self.connectToAnOpenTokSession()
         }
     }
+    
     //MARK-
     func setTokboxSessionIdAndToken(data:NSDictionary){
         if self.session == nil{
@@ -321,11 +337,9 @@ class VideoCallViewController: UIViewController,PulsingCallDelegate {
         
         callDuration.text = self.timeString(time: TimeInterval(timeRemaining))
         
-        if timeRemaining == 6*60{
-            
+        if timeRemaining == 19*60{
             self.Check_Next_Slot_Webservice()
-            
-        }else if timeRemaining == 5*60{
+        }else if timeRemaining == 18*60{
             
             self.removeChildController()
             
@@ -407,8 +421,8 @@ extension VideoCallViewController: OTSessionDelegate {
     
     func session(_ session: OTSession, didFailWithError error: OTError) {
         print("The client failed to connect to the OpenTok session: \(error).")
-        print(error.code == 1022)
-        if error.code == 1022{
+      
+        if self.publisher == nil{
             supportingfuction.showMessageHudWithMessage(message: "Due to some technical difficulty call can not be connected. Please try again.", delay: 2.0)
             self.navigationController?.popViewController(animated: true)
         }
@@ -432,7 +446,7 @@ extension VideoCallViewController: OTSessionDelegate {
             self.errorLabel.text = "Opps, looks like the patient is experiencing technical difficulties. \n Please wait for them to rejoin the call..."
             self.subscriberView.removeFromSuperview()
         }else{
-            self.errorLabel.text = "Patient joined the call. Patient vedio feed will present shortly..."
+            self.errorLabel.text = "Patient joined the call. Patient video feed will present shortly..."
         }
         
         guard let subscriberV = subscriber.view else {
@@ -458,11 +472,10 @@ extension VideoCallViewController: OTSessionDelegate {
     }
     
     func session(_ session: OTSession, receivedSignalType type: String?, from connection: OTConnection?, with string: String?) {
-        print("receivedSignalType ===== \(type ?? "")")
-        print("receivedSignalstring ===== \(string ?? "")")
+        
         var dict = NSMutableDictionary()
         dict = CommonValidations.convertToDictionary(text: string!).mutableCopy() as! NSMutableDictionary
-        if type! == "endCall"{
+        if type! == TokboxSignal.End_Call.rawValue{
             if dict.object(forKey: "user_id") as! String != (UserDefaults.standard.object(forKey: "user_id") as! String){
                 let alertContoller = UIAlertController(title: "Alert!", message: "Call is diconnected from patient end.", preferredStyle: .alert)
                 let yesAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
@@ -471,7 +484,7 @@ extension VideoCallViewController: OTSessionDelegate {
                 alertContoller.addAction(yesAction)
                 self.present(alertContoller, animated: true, completion: nil)
             }
-        }else if  type! == "streamStopped"{
+        }else if  type! == TokboxSignal.Stream_Stopped.rawValue{
             if dict.count > 0 {
                 if dict.object(forKey: "user_id") != nil && dict.object(forKey: "user_id") as! String != (UserDefaults.standard.object(forKey: "user_id") as! String){
                     print("Patient Stop the stream")
@@ -480,7 +493,7 @@ extension VideoCallViewController: OTSessionDelegate {
                     self.errorLabel.text = "Patient stopped sharing the video."
                 }
             }
-        }else if  type! == "streamReconnected"{
+        }else if  type! == TokboxSignal.Stream_Reconnected.rawValue{
             if dict.count > 0 {
                 if dict.object(forKey: "user_id") != nil &&  dict.object(forKey: "user_id") as! String != (UserDefaults.standard.object(forKey: "user_id") as! String){
                     print("Patient resume the stream")
@@ -489,7 +502,7 @@ extension VideoCallViewController: OTSessionDelegate {
                     self.switchVideoStreamView(smallView: self.publisherView, largeView: self.subscriberView, isLargeNeeded: true)
                 }
             }
-        }else if  type! == "ismuted_true"{
+        }else if  type! == TokboxSignal.Audio_Muted.rawValue{
             if dict.count > 0 {
                 if dict.object(forKey: "user_id") != nil &&  dict.object(forKey: "user_id") as! String != (UserDefaults.standard.object(forKey: "user_id") as! String){
                     print("Patient stop the audio")
@@ -497,7 +510,7 @@ extension VideoCallViewController: OTSessionDelegate {
                     self.errorLabel.text = "Patient  muted this call."
                 }
             }
-        }else if  type! == "ismuted_false"{
+        }else if  type! == TokboxSignal.Audio_Unmuted.rawValue{
             if dict.count > 0 {
                 if dict.object(forKey: "user_id") != nil &&  dict.object(forKey: "user_id") as! String != (UserDefaults.standard.object(forKey: "user_id") as! String){
                     print("Patient resume the audio")
@@ -505,25 +518,20 @@ extension VideoCallViewController: OTSessionDelegate {
                     self.errorLabel.text = ""
                 }
             }
-        }else if  type! == "paidCallExtended"{
+        }else if  type! == TokboxSignal.Paid_Call_Extended.rawValue{
+            if dict.count > 0 {
+                if dict.object(forKey: "user_id") != nil &&  dict.object(forKey: "user_id") as! String != (UserDefaults.standard.object(forKey: "user_id") as! String){
+                    self.totalCallDuration =  self.totalCallDuration + 2*60
+                    self.timeRemaining = self.timeRemaining + 2*60
+                }
+            }
+        }else if  type! == TokboxSignal.Paid_Call_Not_Extended.rawValue{
             if dict.count > 0 {
                 if dict.object(forKey: "user_id") != nil &&  dict.object(forKey: "user_id") as! String != (UserDefaults.standard.object(forKey: "user_id") as! String){
                     
                 }
             }
-        }else if  type! == "paidCallNotExtended"{
-            if dict.count > 0 {
-                if dict.object(forKey: "user_id") != nil &&  dict.object(forKey: "user_id") as! String != (UserDefaults.standard.object(forKey: "user_id") as! String){
-                    
-                }
-            }
-        }else if  type! == "extendPaidCall"{
-            if dict.count > 0 {
-                if dict.object(forKey: "user_id") != nil &&  dict.object(forKey: "user_id") as! String != (UserDefaults.standard.object(forKey: "user_id") as! String){
-                    
-                }
-            }
-        }else{
+        }else if type! == TokboxSignal.Message.rawValue{
             if dict.count>0{
                 self.chatMessages.messages.append(Message(json: dict))
                 
@@ -533,6 +541,12 @@ extension VideoCallViewController: OTSessionDelegate {
                 }else{
                     self.removeChildController()
                     self.chatBtnClicked()
+                }
+            }
+        }else if type! == TokboxSignal.ExtendedPaymentCancelled.rawValue{
+            if dict.count > 0 {
+                if dict.object(forKey: "user_id") != nil &&  dict.object(forKey: "user_id") as! String != (UserDefaults.standard.object(forKey: "user_id") as! String){
+                    
                 }
             }
         }
@@ -563,6 +577,8 @@ extension VideoCallViewController: OTSubscriberDelegate {
     
     func subscriberDidReconnect(toStream subscriber: OTSubscriberKit) {
         print("The subscriber reconnectconnect to the stream.")
+        //Insert the patient view in screen
+        view.insertSubview(self.subscriberView, at: 1)
     }
     
     func subscriberDidDisconnect(fromStream subscriber: OTSubscriberKit) {
@@ -573,7 +589,7 @@ extension VideoCallViewController: OTSubscriberDelegate {
 
 // MARK: - VideoActionButtonDelegate callbacks
 extension VideoCallViewController: VideoActionButtonDelegate {
-    
+
     //Mute or Unmute microphone
     func muteUnmutebtnClicked(value:Bool) {
         self.startHideTimer()
@@ -640,7 +656,7 @@ extension VideoCallViewController: VideoActionButtonDelegate {
     //Disconnect the call from server
     func disconnectCallBtnClicked() {
         
-        let alertContoller = UIAlertController(title: "Alert!", message: "Are you sure to disconnect call?", preferredStyle: .alert)
+        let alertContoller = UIAlertController(title: "Alert!", message: "Are you sure you want to disconnect the call?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (alertAction) in
             self.sendEndCallMessage()
             if self.subscriber != nil{
@@ -680,7 +696,8 @@ extension VideoCallViewController: VideoActionButtonDelegate {
     }
     
     //Add prescription form on screen
-    func prescriptionBtnClicked() {
+    func prescriptionBtnClicked(_ sender:UIButton) {
+        sender.isUserInteractionEnabled = false
         let prescriptionVC = PrescriptionFormViewController()
         prescriptionVC.prescriptionData = self.prescriptionData
         prescriptionVC.delegate = self
@@ -689,7 +706,7 @@ extension VideoCallViewController: VideoActionButtonDelegate {
         prescriptionVC.view.frame = CGRect(x: 0, y: UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: 0)
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
             prescriptionVC.view.frame = CGRect(x: 0, y: 162, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 162)
-            
+            sender.isUserInteractionEnabled = true
         }) { _  in
             if self.timeRemaining != 0{
                 self.switchVideoStreamView(smallView: self.subscriberView, largeView: self.publisherView, isLargeNeeded: false)
@@ -768,8 +785,7 @@ extension VideoCallViewController: WaitingChatRoomDelegate,ExtendVideoDelegate,P
         }
     }
     
-   
-    func sendEndCallMessage(){
+   func sendEndCallMessage(){
         var error: OTError?
         let recieverDict = NSMutableDictionary()
         recieverDict.setValue(UserDefaults.standard.object(forKey: "user_id") as! String, forKey: "user_id")
@@ -797,10 +813,23 @@ extension VideoCallViewController: WaitingChatRoomDelegate,ExtendVideoDelegate,P
             tempJson = string! as NSString
             print(tempJson)
             self.session.signal(withType: "extendPaidCall", string: tempJson as String, connection: nil, retryAfterReconnect: true, error: &error)
+//
+            NotificationCenter.default.addObserver(self, selector: #selector(self.extendPaidRequestSuccess(data:)), name:NSNotification.Name(rawValue: "extend_payment_notification"), object: nil)
+            
         }catch let error as NSError{
             print(error.description)
         }
     }
     
+    func extendPaidRequestSuccess(data:Notification){
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "extend_payment_notification"), object: nil)
+        print("data==\(data.userInfo ?? ["":""])")
+        if let dict = data.userInfo as NSDictionary?{
+            if dict.object(forKey: "id_appointment") as! String == apointmentDict.object(forKey: "id_appointment") as! String{
+                self.totalCallDuration =  self.totalCallDuration + 20*60
+                self.timeRemaining = self.timeRemaining + 20*60
+            }
+        }
+    }
 }
 

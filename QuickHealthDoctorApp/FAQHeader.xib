@@ -31,11 +31,8 @@
                         <constraint firstAttribute="height" constant="80" id="ar8-vD-j87"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JACOB FRANCIS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STj-38-gcv">
-                    <rect key="frame" x="30" y="202" width="315" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="xdE-pz-5oL"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STj-38-gcv">
+                    <rect key="frame" x="30" y="202" width="315" height="22"/>
                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
                     <color key="textColor" white="0.0" alpha="0.90635775860000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>

@@ -18,6 +18,7 @@ class SupportView: UIViewController,UITableViewDataSource,UITableViewDelegate,UI
     var supportDictionary = NSMutableDictionary()
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.statusBarView?.backgroundColor = .clear
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         NotificationCenter.default.addObserver(self, selector: #selector(VerifyOtpView.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -273,10 +274,9 @@ class SupportView: UIViewController,UITableViewDataSource,UITableViewDelegate,UI
                     if dataFromServer.object(forKey: "message") != nil
                     {
                         // supportingfuction.showMessageHudWithMessage(message: dataFromServer.object(forKey: "message") as! NSString, delay: 2.0)
-                        if dataFromServer.object(forKey: "message") != nil
-                        {
+                        if dataFromServer.object(forKey: "message") != nil{
                             supportingfuction.showMessageHudWithMessage(message: dataFromServer.object(forKey: "message") as! NSString, delay: 2.0)
-                            self.navigationController?.popViewController(animated: true)
+                            self.perform(#selector(self.backTapped(_:)), with: nil, afterDelay: 2.0)
                         }
                     }
                 }else if (dataFromServer.object(forKey: "error_code") != nil && "\(dataFromServer.object(forKey: "error_code")!)" != "" && "\(dataFromServer.object(forKey: "error_code")!)"  == "306")

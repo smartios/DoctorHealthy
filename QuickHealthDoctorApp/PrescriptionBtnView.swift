@@ -41,6 +41,7 @@ class PrescriptionBtnView: UIView {
     }
     
     @IBAction func prescriptionBtnClicked(_ sender: UIButton) {
-        self.delegate?.prescriptionBtnClicked()
+        sender.isUserInteractionEnabled = false
+        self.delegate?.prescriptionBtnClicked(sender)
     }
 }

@@ -336,7 +336,7 @@ class FamilyHistoryController: UIViewController, UITableViewDataSource, UITableV
         }
         
         dict.setObject(tempJson2, forKey:"family_history_array" as NSCopying)
-        dict.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
+//        dict.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
         let apiSniper = APISniper()
         
         apiSniper.getDataFromWebAPI(WebAPI.family_history_edit, dict, { (operation, responseObject) in

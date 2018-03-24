@@ -713,12 +713,8 @@ class BookedAvailbilityView: UIViewController,UITableViewDelegate,UITableViewDat
                 tempJson = string! as NSString
                 print(tempJson)
                 requestData.setObject(tempJson, forKey: "slot" as NSCopying)
-                
-            }
-            else
-            {
+            }else{
                 requestData.setObject("", forKey: "slot" as NSCopying)
-                
             }
         }catch let error as NSError{
             print(error.description)
@@ -737,30 +733,28 @@ class BookedAvailbilityView: UIViewController,UITableViewDelegate,UITableViewDat
             }
         }catch _ as NSError{
         }
+         requestData.setValue(TimeZone.current.identifier, forKey: "user_time_zone")
+        
         requestData.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
+        
         print(requestData)
+        
         let apiSniper = APISniper()
         apiSniper.getDataFromWebAPI(WebAPI.save_availability,requestData,{ (operation, responseObject) in
-            if let dataFromServer = responseObject as? NSDictionary
-            {
-                if (dataFromServer.object(forKey: "error_code") != nil && "\(dataFromServer.object(forKey: "error_code")!)" != "" && "\(dataFromServer.object(forKey: "error_code")!)"  == "306")
-                {
+            
+            if let dataFromServer = responseObject as? NSDictionary{
+                if (dataFromServer.object(forKey: "error_code") != nil && "\(dataFromServer.object(forKey: "error_code")!)" != "" && "\(dataFromServer.object(forKey: "error_code")!)"  == "306"){
                     logoutUser()
-                }else if dataFromServer.object(forKey: "status") as! String == "success"
-                {
+                }else if dataFromServer.object(forKey: "status") as! String == "success"{
                     supportingfuction.hideProgressHudInView(view: self)
                     let msg:String = dataFromServer.object(forKey: "message") as! String
                     supportingfuction.showMessageHudWithMessage(message: msg as NSString, delay: 2.0)
                     Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.back), userInfo: nil, repeats: false)
-                }
-                else
-                {
+                }else{
                     supportingfuction.hideProgressHudInView(view: self)
                 }
             }
-            
-        })
-        { (operation, error) in
+        }){ (operation, error) in
             print(error.localizedDescription)
             supportingfuction.hideProgressHudInView(view: self)
             supportingfuction.showMessageHudWithMessage(message: "Due to some error, we are unable to proceed with your request.", delay: 2.0)

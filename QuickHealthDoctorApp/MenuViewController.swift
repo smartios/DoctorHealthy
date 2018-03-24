@@ -73,7 +73,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         arrayMenuOptions.removeAll()
         arrayMenuOptions.append(["title":"ABOUT QUICKHEALTH", "icon":"HomeIcon"])
-        arrayMenuOptions.append(["title":"TERMS & CONDITION", "icon":"PlayIcon"])
+        arrayMenuOptions.append(["title":"TERMS & CONDITIONS", "icon":"PlayIcon"])
         arrayMenuOptions.append(["title":"PRIVACY POLICY", "icon":"HomeIcon"])
         arrayMenuOptions.append(["title":"CONTACT US", "icon":"PlayIcon"])
         arrayMenuOptions.append(["title":"FAQ", "icon":"PlayIcon"])

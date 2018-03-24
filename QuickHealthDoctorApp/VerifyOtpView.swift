@@ -298,7 +298,10 @@ class VerifyOtpView: UIViewController,UITableViewDataSource,UITableViewDelegate,
             dict.setObject("", forKey: "device_token" as NSCopying)
         }
         dict.setObject(UIDevice.current.identifierForVendor!.uuidString, forKey: "device_id" as NSCopying)
+        dict.setValue(TimeZone.current.identifier, forKey: "user_time_zone")
         dict.setObject("ios", forKey: "device_type" as NSCopying)
+        
+        print("Verify Otp Request Data=====\n\(dict)")
         
         let apiSniper = APISniper()
         apiSniper.getDataFromWebAPI(WebAPI.otp_webmethod,dict, {(operation, responseObject) in

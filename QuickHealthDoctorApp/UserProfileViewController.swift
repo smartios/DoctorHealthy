@@ -29,6 +29,7 @@ class UserProfileViewController: UIViewController,UITableViewDataSource,UITableV
         super.viewDidLoad()
         tableView?.estimatedRowHeight = 100
         tableView?.rowHeight = UITableViewAutomaticDimension
+        UIApplication.shared.statusBarView?.backgroundColor = .clear
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
         definesPresentationContext = true
@@ -59,7 +60,7 @@ class UserProfileViewController: UIViewController,UITableViewDataSource,UITableV
         let dict = NSMutableDictionary()
         
         dict.setObject(userId, forKey: "user_id" as NSCopying)
-        dict.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
+//        dict.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
         let apiSniper = APISniper()
         supportingfuction.showProgressHudForViewMy(view: self, withDetailsLabel: "Please Wait", labelText: "Requesting")
         apiSniper.getDataFromWebAPI(WebAPI.userProfile, dict, {(operation, responseObject) in
@@ -71,9 +72,9 @@ class UserProfileViewController: UIViewController,UITableViewDataSource,UITableV
                     logoutUser()
                 }else if response.object(forKey: "status") as! String == "success"{
                     self.profileDictionary = response.mutableCopy() as! NSMutableDictionary
-                    
+                }else{
+                    supportingfuction.showMessageHudWithMessage(message: response.object(forKey: "message") as! String as NSString, delay: 2.0)
                 }
-                supportingfuction.showMessageHudWithMessage(message: response.object(forKey: "message") as! String as NSString, delay: 2.0)
             }
         },{(operation, error) in
             supportingfuction.showMessageHudWithMessage(message: "Due to some error we can not proceed your request.", delay: 2.0)

@@ -12,14 +12,18 @@ class HeaderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImagView: UIImageView!{
         didSet{
-            profileImagView.layer.borderWidth = 0
+            profileImagView.layer.borderWidth = 1
             profileImagView.layer.borderColor = UIColor.gray.cgColor
+            profileImagView.layer.cornerRadius = profileImagView.frame.size.width/2
+            profileImagView.clipsToBounds = true
         }
     }
     @IBOutlet weak var detailButton: UIButton!{
         didSet{
             detailButton.layer.borderWidth = 1
-            detailButton.layer.borderColor = UIColor(red: 0.0 / 255.0, green: 128.0 / 255.0, blue: 128.0 / 255.0, alpha: 0.75).cgColor
+            detailButton.layer.cornerRadius = 3.0
+            detailButton.layer.borderColor = UIColor(red: 0.0 / 255.0, green: 128.0 / 255.0, blue: 128.0 / 255.0, alpha: 1.0).cgColor
+
         }
     }
     

@@ -23,6 +23,7 @@ class PatientListView: BaseViewController,UITableViewDataSource,UITableViewDeleg
         super.viewDidLoad()
         tableView?.estimatedRowHeight = 50
         tableView?.rowHeight = UITableViewAutomaticDimension
+        
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
         definesPresentationContext = true
@@ -40,6 +41,7 @@ class PatientListView: BaseViewController,UITableViewDataSource,UITableViewDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.statusBarView?.backgroundColor = .white
         self.appointmentListing()
     }
     //MARK:- TableView Delegate and Datasource
@@ -104,6 +106,11 @@ class PatientListView: BaseViewController,UITableViewDataSource,UITableViewDeleg
         }else{
             callBtn.isHidden = true
         }
+        if ((UserDefaults.standard.object(forKey: "user_detail") as! NSDictionary).object(forKey: "user_type") as! String).lowercased() != "doctor"
+        {
+            callBtn.isHidden = true
+        }
+        callBtn.isHidden = false
         return cell
     }
     
@@ -292,6 +299,8 @@ class PatientListView: BaseViewController,UITableViewDataSource,UITableViewDeleg
     
     
     func assignData(){
+        self.todayAppointment = NSArray()
+        self.upcomingAppointment = NSArray()
         if self.inboxDic.object(forKey: "todays_appointments") != nil &&  inboxDic.object(forKey: "todays_appointments") is NSNull == false && (inboxDic.object(forKey: "todays_appointments") as! NSArray).count > 0
         {
             self.todayAppointment = (inboxDic.object(forKey: "todays_appointments") as! NSArray)

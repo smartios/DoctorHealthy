@@ -31,7 +31,7 @@ class StaticPageViewController: UIViewController,UIWebViewDelegate {
                 
                 if appDelegate.staticpage ==  "about-us"
                 {
-                  pageTitle?.text = "ABOUT US"
+                  pageTitle?.text = "ABOUT QUICKHEALTH"
                 }else if appDelegate.staticpage ==  "terms-and-conditions"
                 {
                     pageTitle?.text = "TERMS & CONDITIONS"
@@ -84,7 +84,7 @@ class StaticPageViewController: UIViewController,UIWebViewDelegate {
     {
                    //  let url = URL (string: ("http://115.249.91.204/quickhealth/mobile/mobile_static_page/static_page?page_name=\(appDelegate.staticpage)" ))
         
-       let url = URL (string: ("http://103.15.232.35/singsys-stg3/quickhealth/mobile/mobile_static_page/static_page?page_name=\(appDelegate.staticpage)" ))
+       let url = URL (string: ("\(WebAPI.BASE_URLs)mobile/mobile_static_page/static_page?page_name=\(appDelegate.staticpage)" ))
                     let requestObj = URLRequest(url: url!)
                     self.webView?.loadRequest(requestObj)
     }

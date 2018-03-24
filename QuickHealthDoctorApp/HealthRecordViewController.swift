@@ -1002,7 +1002,7 @@ class HealthRecordViewController: BaseViewController,UITableViewDelegate,UITable
         {
             requestData.setObject(UserDefaults.standard.object(forKey: "key_api") as! String, forKey: "key_api" as NSCopying)
         }
-        dict.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
+//        requestData.setValue("\((UserDefaults.standard.value(forKey: "user_detail") as! NSDictionary).value(forKey: "user_api_key")!)", forKey: "user_api_key")
         let apiSniper = APISniper()
         apiSniper.getDataFromWebAPI(WebAPI.edit_medical_history,requestData, {(operation, responseObject) in
             supportingfuction.hideProgressHudInView(view: self)
@@ -1121,7 +1121,7 @@ class HealthRecordViewController: BaseViewController,UITableViewDelegate,UITable
         }
         else if indexPath?.section == 3
         {
-            if (medicalConditionArray.object(at: (indexPath?.row)! - 2) as AnyObject).object(forKey: "status") as? String == "active" && ((medicalConditionArray.object(at: (indexPath?.row)! - 2) as AnyObject).object(forKey: "title") as! String).lowercased() == "Other"
+            if (medicalConditionArray.object(at: (indexPath?.row)! - 2) as AnyObject).object(forKey: "status") as? String == "active" && ((medicalConditionArray.object(at: (indexPath?.row)! - 2) as AnyObject).object(forKey: "title") as! String).lowercased() == "other"
             {
                 var dict = (medicalConditionArray.object(at: (indexPath?.row)! - 2) as! NSDictionary).mutableCopy() as! NSMutableDictionary
                 dict.setObject(textView.text, forKey: "other_description" as NSCopying)
@@ -1371,7 +1371,7 @@ class HealthRecordViewController: BaseViewController,UITableViewDelegate,UITable
                             self.medicationDict.setObject(NSArray(), forKey: "current_medication" as NSCopying)
                         }
 
-                        if (maindataDict.object(forKey: "is_medical_condition") is NSNull == false) && (maindataDict.object(forKey: "is_medical_condition")) as! String == "yes"
+                        if (maindataDict.object(forKey: "is_medication") is NSNull == false) && (maindataDict.object(forKey: "is_medication")) as! String == "yes"
                         {
                             if ((self.medicationDict.object(forKey: "current_medication")) as! NSArray).count > 0{
                                 
@@ -1433,7 +1433,7 @@ class HealthRecordViewController: BaseViewController,UITableViewDelegate,UITable
                         
                         self.is_surgeries_medical_procedure = maindataDict.object(forKey: "is_surgeries_medical_procedure") as! String
                         self.is_medical_condition = maindataDict.object(forKey: "is_medical_condition") as! String
-                        self.is_medication = (maindataDict.object(forKey: "is_medical_condition")) as! String
+                        self.is_medication = (maindataDict.object(forKey: "is_medication")) as! String
                         self.tableView.reloadData()
                     }
                 }

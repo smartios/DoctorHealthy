@@ -19,9 +19,20 @@ class CallNotification{
     
     class func callReminder(_ data:NSDictionary){
         print("Call Reminder=====\n \(data)")
-        let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabbarStoryboard", bundle: nil)
-        let vc = tabStoryboard.instantiateViewController(withIdentifier: "PatientListView") as! PatientListView
-    UIApplication.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "TabbarStoryboard", bundle: nil)
+        let pushVC = mainStoryboard.instantiateViewController(withIdentifier: "TabbarViewController") as! TabbarViewController
+        let rootViewController = appDelegate.window!.rootViewController as! UINavigationController
+        rootViewController.setViewControllers([pushVC], animated: true)
+        appDelegate.window!.rootViewController!.removeFromParentViewController()
+        appDelegate.window!.rootViewController!.view.removeFromSuperview()
+        appDelegate.window!.rootViewController = nil
+        appDelegate.window!.rootViewController = rootViewController
+        pushVC.selectedIndex = 1
+    }
+    
+    class func callExtendPaymetReceived(_ data:NSDictionary){
+        print("Call Extend payement success=====\n \(data)")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "extend_payment_notification"), object: nil, userInfo: data as! [AnyHashable : Any])
     }
 }
 

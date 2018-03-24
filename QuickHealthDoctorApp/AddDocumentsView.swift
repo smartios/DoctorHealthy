@@ -126,6 +126,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDele
         if controller.documentPickerMode == .import{
             print(url)
             if let fileData = NSData(contentsOf: url){
+                
                 if fileData.length>5000000{
                     let alertController = UIAlertController(title: "Error!", message:"File size greater than 5MB.Please select another file.", preferredStyle: .alert)
                     let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)

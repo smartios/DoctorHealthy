@@ -19,7 +19,7 @@ protocol VideoActionButtonDelegate {
     //Chat  btn action
     func chatBtnClicked()
     //Prescription Action
-    func prescriptionBtnClicked()
+    func prescriptionBtnClicked(_ sender:UIButton)
     
     func stopSendingStreamBtnClicked(value:Bool)
 }
@@ -91,7 +91,8 @@ class VideoActionButton: UIView {
     }
   
     @IBAction func prescriptionBtnClicked(_ sender: UIButton) {
-        self.delegate?.prescriptionBtnClicked()
+        sender.isUserInteractionEnabled = false
+        self.delegate?.prescriptionBtnClicked(sender)
     }
     
     @IBAction func chatBtnClicked(_ sender: UIButton) {

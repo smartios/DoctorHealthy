@@ -33,7 +33,8 @@ class WaitingRoomViewController: UIViewController {
             designationLabel.text = ""
         }
         loadgif()
-        NotificationCenter.default.addObserver(self, selector: #selector(acceptCall(_:)), name:NSNotification.Name(rawValue: "callRejected"), object: nil)
+        self.perform(#selector(self.setObserver), with: nil, afterDelay: 3.0)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -42,13 +43,16 @@ class WaitingRoomViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(acceptCall(_:)), name:NSNotification.Name(rawValue: "callRejected"), object: nil)
+    }
+    
     func tappedToDismissView(){
         self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: PULSING HALO
-    func loadgif()
-    {
+    func loadgif(){
         halo.removeFromSuperlayer()
         
         let layer = PulsingHaloLayer()

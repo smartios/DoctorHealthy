@@ -134,7 +134,7 @@
                                        );
     }
     
-    _imageView.frame = CGRectMake(8, 2, 24, 24);
+    _imageView.frame = CGRectMake(self.contentView.fs_width/2 - 12, self.preferredImageOffset.y + 1, 24, 24);
     
     
     

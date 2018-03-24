@@ -789,11 +789,9 @@ class SignupView: UIViewController,UITableViewDataSource,UITableViewDelegate,cou
         }
         cell.backgroundColor = UIColor.clear
         return cell
-        
     }
     
-    func navigateToLogin()
-    {
+    func navigateToLogin(){
         _ = navigationController?.popViewController(animated: true)
     }
     
@@ -1025,26 +1023,26 @@ class SignupView: UIViewController,UITableViewDataSource,UITableViewDelegate,cou
             return
             
         }
-               if signUpDictionary.object(forKey: "street") == nil ||  signUpDictionary.object(forKey: "street") as! String == ""
-        {
-            supportingfuction.showMessageHudWithMessage(message: enterStreetAddress as NSString, delay: 2.0)
-            return
-        }
-        
-     
-        
-        if signUpDictionary.object(forKey: "city") == nil ||  signUpDictionary.object(forKey: "city") as! String == ""
-        {
-            supportingfuction.showMessageHudWithMessage(message: enterCity as NSString, delay: 2.0)
-            return
-        }
-        
-        
-        if signUpDictionary.object(forKey: "state") == nil ||  signUpDictionary.object(forKey: "state") as! String == ""
-        {
-            supportingfuction.showMessageHudWithMessage(message: enterState as NSString, delay: 2.0)
-            return
-        }
+//               if signUpDictionary.object(forKey: "street") == nil ||  signUpDictionary.object(forKey: "street") as! String == ""
+//        {
+//            supportingfuction.showMessageHudWithMessage(message: enterStreetAddress as NSString, delay: 2.0)
+//            return
+//        }
+//
+//
+//
+//        if signUpDictionary.object(forKey: "city") == nil ||  signUpDictionary.object(forKey: "city") as! String == ""
+//        {
+//            supportingfuction.showMessageHudWithMessage(message: enterCity as NSString, delay: 2.0)
+//            return
+//        }
+//
+//
+//        if signUpDictionary.object(forKey: "state") == nil ||  signUpDictionary.object(forKey: "state") as! String == ""
+//        {
+//            supportingfuction.showMessageHudWithMessage(message: enterState as NSString, delay: 2.0)
+//            return
+//        }
         
         if signUpDictionary.object(forKey: "area_code") == nil ||  signUpDictionary.object(forKey: "area_code") as! String == ""
         {
@@ -1082,10 +1080,6 @@ class SignupView: UIViewController,UITableViewDataSource,UITableViewDelegate,cou
             supportingfuction.showMessageHudWithMessage(message: "Please acknowledge.", delay: 2.0)
             return
         }
-       
-        
-        
-        
         signUpWebService()
         
     }
@@ -1579,11 +1573,25 @@ extension SignupView: GMSAutocompleteViewControllerDelegate {
 
         dict.setObject(signUpDictionary.object(forKey: "mobile_no") as! String, forKey: "mobile_number" as NSCopying)
         dict.setObject(signUpDictionary.object(forKey: "address") as! String, forKey: "address" as NSCopying)
-        dict.setObject(signUpDictionary.object(forKey: "street") as! String, forKey: "street_address" as NSCopying)
-      
-        dict.setObject(signUpDictionary.object(forKey: "city") as! String, forKey: "city" as NSCopying)
         
-        dict.setObject(signUpDictionary.object(forKey: "state") as! String, forKey: "state" as NSCopying)
+        if let x = signUpDictionary.object(forKey: "street") as? String{
+            dict.setObject(x, forKey: "street_address" as NSCopying)
+        }else{
+            dict.setObject("", forKey: "street_address" as NSCopying)
+        }
+        
+        if let x = signUpDictionary.object(forKey: "city") as? String{
+            dict.setObject(x, forKey: "city" as NSCopying)
+        }else{
+            dict.setObject("", forKey: "city" as NSCopying)
+        }
+        
+        if let x = signUpDictionary.object(forKey: "state") as? String{
+            dict.setObject(x, forKey: "state" as NSCopying)
+        }else{
+            dict.setObject("", forKey: "state" as NSCopying)
+        }
+        
         dict.setObject(signUpDictionary.object(forKey: "area_code") as! String, forKey: "area_code" as NSCopying)
         dict.setObject("India", forKey: "country" as NSCopying)
          dict.setObject(signUpDictionary.object(forKey: "licence_no") as! String, forKey: "license_number" as NSCopying)

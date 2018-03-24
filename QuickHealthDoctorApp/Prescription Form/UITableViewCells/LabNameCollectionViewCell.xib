@@ -38,6 +38,8 @@
                     </label>
                     <button opaque="NO" tag="63" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaG-xN-miD">
                         <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                        <state key="normal" image="cross"/>
                         <connections>
                             <action selector="onClickedCrossLabName:" destination="gTV-IL-0wX" eventType="touchUpInside" id="n10-b6-MAP"/>
                         </connections>
@@ -65,4 +67,7 @@
             <point key="canvasLocation" x="-71.5" y="-23"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="cross" width="12" height="12"/>
+    </resources>
 </document>

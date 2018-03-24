@@ -22,25 +22,16 @@ class UserViewController: BaseViewController,UITableViewDelegate,UITableViewData
     var dropDataArray = ((UserDefaults.standard.object(forKey: "user_detail") as! NSDictionary).object(forKey: "user_type") as! String).lowercased() == "doctor" ? [" ","PROFILE","HISTORY","WAITING ROOM","CHANGE PASSWORD",""] : [" ","PROFILE","HISTORY","TRACK","CHANGE PASSWORD",""]
     
     
-    override func viewWillAppear(_ animated: Bool)
-    {
-        
-        if tappedIndex != -1
-        {
-            tappedIndex = -1
-            tableView.reloadData()
-        }
-//        self.userDetailWebService()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       UIApplication.shared.statusBarView?.backgroundColor = .clear
+        self.userDetailWebService()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        //        self.tabBarController?.tabBar.items?[0].isEnabled = false
-        //        self.tabBarController?.tabBar.items?[1].isEnabled = false
-        //        self.tabBarController?.tabBar.items?[2].isEnabled = false
-        
+
+       
         self.navigationController?.isNavigationBarHidden = true
         
         UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Arimo-Bold", size: 15)!], for: .normal)
@@ -71,12 +62,12 @@ class UserViewController: BaseViewController,UITableViewDelegate,UITableViewData
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0
         {
-            return 216
+            return 216 + 50
         }else
         {
             if indexPath.row == 3{
                 if ((UserDefaults.standard.object(forKey: "user_detail") as! NSDictionary).object(forKey: "user_type") as! String).lowercased() == "doctor"{
-                    return 0
+                    return 50
                 }
             }
             
@@ -159,15 +150,17 @@ class UserViewController: BaseViewController,UITableViewDelegate,UITableViewData
            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserProfileViewController") as! UserProfileViewController
             self.navigationController?.pushViewController(vc, animated: true)
         }else if indexPath.row == 2{
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "HistoryView") as! HistoryView
-            self.navigationController?.pushViewController(vc, animated: true)
+            if ((UserDefaults.standard.object(forKey: "user_detail") as! NSDictionary).object(forKey: "user_type") as! String).lowercased() == "doctor"{
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "HistoryView") as! HistoryView
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }else if indexPath.row == 3{
             if ((UserDefaults.standard.object(forKey: "user_detail") as! NSDictionary).object(forKey: "user_type") as! String).lowercased() != "doctor"{
                 let vc = PatientTrackListViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }else{
-                let vc = VideoCallViewController(nibName: "VideoCallViewController", bundle: nil)
-                self.navigationController?.pushViewController(vc, animated: true)
+//                let vc = VideoCallViewController(nibName: "VideoCallViewController", bundle: nil)
+//                self.navigationController?.pushViewController(vc, animated: true)
                 
             }
         }else if indexPath.row == 4{

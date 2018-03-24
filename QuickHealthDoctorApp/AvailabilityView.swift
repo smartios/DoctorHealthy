@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AvailabilityView: UIViewController,UITableViewDelegate,UITableViewDataSource, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance{
+class AvailabilityView: BaseViewController,UITableViewDelegate,UITableViewDataSource, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance{
     
     @IBOutlet weak var tableView: UITableView!
     var allBookedDateArray = NSMutableArray()
@@ -28,10 +28,15 @@ class AvailabilityView: UIViewController,UITableViewDelegate,UITableViewDataSour
         isMultipleSelectedOn = true
         type = "single_day"
         self.navigationController?.isNavigationBarHidden = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.shared.statusBarView?.backgroundColor = .white
+        let button = UIButton()
+        button.tag = 10
+//        onSlideMenuButtonPressed(button)
 //        DateString = ""
         getUserData()
     }
@@ -177,6 +182,11 @@ class AvailabilityView: UIViewController,UITableViewDelegate,UITableViewDataSour
         }
         
         self.tableView.reloadData()
+    }
+    
+    @IBAction func menuBtnClicked(_ sender: UIButton) {
+        onSlideMenuButtonPressed(sender )
+        
     }
     
     @IBAction func changeMonthButtonClicked(_ sender: UIButton) {

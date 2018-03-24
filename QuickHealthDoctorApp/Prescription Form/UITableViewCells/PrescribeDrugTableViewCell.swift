@@ -59,5 +59,10 @@ class PrescribeDrugTableViewCell: UITableViewCell {
         }
     }
     
+    @IBAction func onClickedNumberOfDays(_ sender: UIButton) {
+        if let indexPath = self.indexPath{
+            delegate?.getActionForPrescription(.D_Days, indexPath: indexPath)
+        }
+    }
     
 }
